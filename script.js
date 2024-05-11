@@ -1,50 +1,61 @@
 // Get a reference to the #add-employees-btn element
+const addEmployeesBtn = document.querySelector('#add-employees-btn');
+
+// Declaring the employeesArray in global scope
 const employeesArray = [];
 
-const addEmployeesBtn = document.querySelector('#add-employees-btn');
 // Collect employee data
-
   // TODO: Get user input to create and return an array of employee objects
   const collectEmployees = function() {
 
-  let isConfirm = true;
+    let isConfirm = true;
     do {
       let tempFirstName = "";
       let tempLastName = "";
       let tempSalary = "";
-      tempFirstName = window.prompt("Enter first name:");
-      if (tempFirstName === "") {
-        tempFirstName = window.prompt("Please enter the employees first name:");
+      tempFirstName = window.prompt("Enter first name:"); // Asks the user for the first name
+      if (tempFirstName === "") { // Validates the first name input
+        tempFirstName = window.prompt("Please enter the employees first name:"); // If the user didn't enter a first name asks again
       }
-      tempLastName = window.prompt("Enter last name:");
-      if (tempLastName === "") {
-        tempLastName = window.prompt("Please enter the employees last name:");
+      tempLastName = window.prompt("Enter last name:"); // Asks the user for the last name
+      if (tempLastName === "") { // Validates the last name input
+        tempLastName = window.prompt("Please enter the employees last name:"); // If the user didn't enter a last name asks again
       }
-      tempSalary = window.prompt("Enter employee salary:");
-      if (isNaN(tempSalary) || tempSalary === "") {
-        tempSalary = window.prompt("Please enter a valid number:");
+      tempSalary = window.prompt("Enter employee salary:"); // Asks the user for the salary
+      if (tempSalary === "") { // Checks to see if no input was entered and changes the value to be 0
+        tempSalary = 0;
       }
-      employeesArray.push({firstName: tempFirstName, lastName: tempLastName, salary: tempSalary});
-      isConfirm = confirm("Do you want to add another employee?");
+      while (isNaN(tempSalary)) { // Validates the salary input
+        tempSalary = window.prompt("Please enter a valid salary:"); // If the user didn't enter a valid salary asks again
+      }
+      tempSalary = parseFloat(tempSalary); // Converts tempSalary into a float so other functions downstream expecting a number work properly
+      employeesArray.push({firstName: tempFirstName, lastName: tempLastName, salary: tempSalary}); // Pushes the input to the array
+      isConfirm = confirm("Do you want to add another employee?"); // Asks if the user wants to add another user
     }
-    while (isConfirm === true)
+    while (isConfirm === true) // Condition for the while loop to continue
     
-    return (employeesArray);
+  return (employeesArray); // Returns the array
 }
-
-console.log(employeesArray);
 
 // Display the average salary
 const displayAverageSalary = function(employeesArray) {
   // TODO: Calculate and display the average salary
+  let totalSalary = 0;
+  let totalEmployees = employeesArray.length;
+  //totalEmployees = employeesArray.length;
+  for (let i = 0; i < employeesArray.length; i++) {
+    totalSalary += +employeesArray[i].salary;
+  }
+  let averageSalary = (totalSalary / totalEmployees); // Finding the average
+  averageSalary = averageSalary.toLocaleString("en-US",{style:"currency",currency:"USD"}); // Converting number to string with USD notation
+  console.log(`The average employee salary between our ${totalEmployees} employee(s) is ${averageSalary}`); // Writing the average salary and number of employees to the console
 }
 
 // Select a random employee
 const getRandomEmployee = function(employeesArray) {
   // TODO: Select and display a random employee
-  let randomEmployee = (Math.floor(Math.random() * employeesArray.length));
-  console.log(randomEmployee);
-  console.log(`Congratulations to ${employeesArray[randomEmployee].firstName} ${employeesArray[randomEmployee].lastName}, our random drawing winner!`);
+  let randomEmployee = (Math.floor(Math.random() * employeesArray.length)); // Getting a random number from the length of the array
+  console.log(`Congratulations to ${employeesArray[randomEmployee].firstName} ${employeesArray[randomEmployee].lastName}, our random drawing winner!`); // Displays the random array object to the console
 }
 
 /*

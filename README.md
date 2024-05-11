@@ -28,4 +28,4 @@ THEN my employee data is displayed on the page sorted alphabetically by last nam
 
 ## First notes
 
-I'll begin this project with starter code that will need to be modified. I'll need to take input from a user, the information will be about an emmployees first and last name as well as their salary. Afterwards the user will be prompted if they wish to continue to enter more data, if so then more input will be accepted and if not then the data will be displayed to the user, sorted alphabetically by last name. Finally the console will show the number of employees as well as the average salary.
+I'll begin this project with starter code that will need to be modified. I'll need to take input from a user, the information will be about an employees first and last name as well as their salary. Afterwards the user will be prompted if they wish to continue to enter more data, if so then more input will be accepted and if not then the data will be displayed to the user, sorted alphabetically by last name. Finally the console will show the number of employees as well as the average salary.
